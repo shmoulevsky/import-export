@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\User\Models\User;
-use App\Modules\User\Services\Export\ExportUserService;
+use App\Modules\User\Services\Export\ExportService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,9 +16,9 @@ class ExportController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    private ExportUserService $service;
+    private ExportService $service;
 
-    public function __construct(ExportUserService $service)
+    public function __construct(ExportService $service)
     {
         $this->service = $service;
     }
@@ -31,10 +31,9 @@ class ExportController extends BaseController
             Storage::delete($path);
         }
 
-        $model = new User();
-
+        $model = User::class;
         $fields = ['user_name', 'first_name', 'last_name', 'patronymic', 'email', 'password'];
-        $result = $this->service->handle($request->type, $path, $fields, $model);
+        $this->service->handle($request->type, $path, $fields, $model);
     }
 
 }

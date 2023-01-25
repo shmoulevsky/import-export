@@ -4,6 +4,7 @@ namespace App\Modules\User\Services\Import\Handlers\LaravelExcel;
 
 
 use App\Modules\User\Models\User;
+use App\Modules\User\Services\Import\Entities\ValidationRules;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Validation\Rules\Password;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
@@ -42,7 +43,7 @@ class UserImport implements ToModel, WithValidation, SkipsOnFailure, ShouldQueue
     public function rules(): array
     {
         return [
-            '*.0' => ['required','max:100','unique:users,user_name'],
+            '*.0' => ValidationRules::USER_NAME,
             '*.1' => ['required','cyrillic','max:255'],
             '*.2' => ['required','cyrillic','max:255'],
             '*.3' => ['nullable','cyrillic','max:255'],
