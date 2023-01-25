@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\User\Models\User;
-use App\Modules\User\Services\Import\ImportUserService;
+use App\Modules\User\Services\Import\ImportService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -15,7 +15,7 @@ class ImportController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct(ImportUserService $service)
+    public function __construct(ImportService $service)
     {
         $this->service = $service;
     }
@@ -28,10 +28,9 @@ class ImportController extends BaseController
            return response(['error' => "file not found: {$path}"], 422);
         }
 
-        $model = new User();
-
+        $model = User::class;
         $fields = ['user_name', 'first_name', 'last_name', 'patronymic', 'email', 'password'];
-        $result = $this->service->handle($request->type, $path, $model);
+        $this->service->handle($request->type, $path, $model);
     }
 
 }

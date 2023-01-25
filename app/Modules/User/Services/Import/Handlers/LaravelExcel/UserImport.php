@@ -44,11 +44,11 @@ class UserImport implements ToModel, WithValidation, SkipsOnFailure, ShouldQueue
     {
         return [
             '*.0' => ValidationRules::USER_NAME,
-            '*.1' => ['required','cyrillic','max:255'],
-            '*.2' => ['required','cyrillic','max:255'],
-            '*.3' => ['nullable','cyrillic','max:255'],
-            '*.4' => ['required','email','max:255'],
-            '*.5' => ['required','max:255', Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised()],
+            '*.1' => ValidationRules::FIRST_NAME,
+            '*.2' => ValidationRules::LAST_NAME,
+            '*.3' => ValidationRules::PATRONYMIC,
+            '*.4' => ValidationRules::EMAIL,
+            '*.5' => ValidationRules::getPassword(),
         ];
     }
 
