@@ -1,0 +1,114 @@
+version: '3.0'
+
+services:
+  php-fpm-service:
+    build:
+      context: ./php-fpm
+    volumes:
+      - ../:/app
+    restart: always
+    container_name: ${PROJECT_NAME}-php-fpm
+    ports:
+      - ${PROJECT_IP}:9100:9000
+    depends_on:
+      - db_import_export
+    networks:
+        - app-network
+    environment:
+        XDEBUG_CONFIG: client_host=${PROJECT_IP}
+        DEBUG: 1
+
+  crontab:
+    build:
+      context: ./crontab
+    volumes:
+      - ../:/app
+    command: sleep 10000
+    container_name: ${PROJECT_NAME}-crontab
+    ports:
+      - ${PROJECT_IP}:9200:9000
+    depends_on:
+      - db_import_export  
+    networks:
+        - app-network
+
+  db_import_export:
+      image: mysql:8.0.28
+      container_name: ${PROJECT_NAME}_db
+      restart: unless-stopped
+      tty: true
+      ports:
+          - "${PROJECT_IP}:3306:3306"
+      environment:
+          MYSQL_DATABASE: ${MYSQL_DATABASE}
+          MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+          MYSQL_USER: ${MYSQL_USER}
+          MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+          SERVICE_TAGS: dev
+          SERVICE_NAME: mysql
+      volumes:
+          - ./mysql-data:/var/lib/mysql-files
+          - ./mysql/my.cnf:/etc/mysql/my.cnf
+      networks:
+          - app-network
+    
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: ${PROJECT_NAME}_pma
+      environment:
+          PMA_HOST: db_import_export
+          PMA_PORT: "3306"
+          PMA_ARBITRARY: 1
+          UPLOAD_LIMIT: 1000M
+      restart: always
+      ports:
+          - "${PROJECT_IP}:8081:80"
+      depends_on:
+          - db_import_export
+      networks:
+          - app-network
+
+  nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - ../:/app
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites/:/etc/nginx/sites-available
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+    container_name: ${PROJECT_NAME}-nginx
+    restart: always
+    ports:
+      - "${PROJECT_IP}:80:80"
+    depends_on:
+      - php-fpm-service
+    networks:
+        - app-network
+
+  mailhog:
+    image: mailhog/mailhog
+    logging:
+        driver: 'none'  # disable saving logs
+    ports:
+        - "${PROJECT_IP}:1025:1025" # smtp server
+        - "${PROJECT_IP}:8025:8025" # web ui
+    networks:
+        - app-network
+
+  supervisor:
+    build:
+      context: ./supervisor
+    volumes:
+      - ../:/app    
+    container_name: ${PROJECT_NAME}-supervisor
+    ports:
+      - ${PROJECT_IP}:7000:7000
+    depends_on:
+      - php-fpm-service  
+    networks:
+        - app-network
+
+networks:
+    app-network:
+        driver: bridge
