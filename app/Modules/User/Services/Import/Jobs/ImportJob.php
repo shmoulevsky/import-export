@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\User\Services\Export\Jobs;
+namespace App\Modules\User\Services\Import\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -17,17 +17,19 @@ class ImportJob implements ShouldQueue
     private $type;
     private $path;
     private $modelName;
+    private $fields;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($service, $path, $modelName)
+    public function __construct($service, $path, $fields, $modelName)
     {
         $this->service = $service;
         $this->path = $path;
         $this->modelName = $modelName;
+        $this->fields = $fields;
     }
 
     /**
@@ -38,6 +40,6 @@ class ImportJob implements ShouldQueue
     public function handle()
     {
         $model = app()->make($this->modelName);
-        $this->service->import($this->path, $model);
+        $this->service->import($this->path, $this->fields, $model);
     }
 }

@@ -22,15 +22,25 @@ class ImportController extends BaseController
 
     public function import(Request $request)
     {
-        $path = $request->file;
+        $file = $request->file;
 
-        if(!Storage::disk('public')->exists($path)){
-           return response(['error' => "file not found: {$path}"], 422);
+        if(!Storage::disk('public')->exists($file)){
+           return response(['error' => "file not found: {$file}"], 422);
         }
 
         $model = User::class;
-        $fields = ['user_name', 'first_name', 'last_name', 'patronymic', 'email', 'password'];
-        $this->service->handle($request->type, $path, $model);
+        $path = storage_path('app/public/').$file;
+
+        $fields = [
+            'user_name' => ['required','max:100','unique:users,user_name'],
+            'first_name' => ['required','cyrillic','max:255'],
+            'last_name' => ['required','cyrillic','max:255'],
+            'patronymic' => ['cyrillic','max:255'],
+            'email' => ['required','email'],
+            'password' => ['required','password']
+        ];
+
+        $this->service->handle($request->type, $path, $fields, $model);
     }
 
 }

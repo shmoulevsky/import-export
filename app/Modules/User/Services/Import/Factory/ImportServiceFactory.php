@@ -10,12 +10,14 @@ use App\Modules\User\Services\Import\Interfaces\ImportInterface;
 
 class ImportServiceFactory
 {
-    public function make(string $type) : ImportInterface
+    public function make(string $type) : ?ImportInterface
     {
         switch ($type){
             case 'php' : return app()->make(ImportPhpService::class);
             case 'laravel-excel' : return app()->make(ImportLaravelExcelService::class);
             case 'spatie-excel' : return app()->make(ImportSpatieExcelService::class);
         }
+
+        return null;
     }
 }

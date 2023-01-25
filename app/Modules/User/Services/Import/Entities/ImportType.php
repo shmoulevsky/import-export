@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\User\Services\Export\Entities;
+namespace App\Modules\User\Services\Import\Entities;
 
 class ImportType
 {
