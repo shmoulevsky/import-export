@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\User\Models\User;
-use App\Modules\User\Services\Export\ImportUserService;
+use App\Modules\User\Services\Export\ExportUserService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,9 +16,9 @@ class ExportController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    private ImportUserService $service;
+    private ExportUserService $service;
 
-    public function __construct(ImportUserService $service)
+    public function __construct(ExportUserService $service)
     {
         $this->service = $service;
     }
