@@ -2,11 +2,11 @@
 
 namespace App\Modules\User\Services\Validation\Rules;
 
+use App\Modules\User\Services\Validation\Rules\Interfaces\RuleInterface;
 use Illuminate\Support\Facades\DB;
 
-class UniqueRule
+class UniqueRule implements RuleInterface
 {
-    private $name;
     private string $table;
     private string $column;
 
@@ -18,7 +18,7 @@ class UniqueRule
         $this->column = $params[1];
     }
 
-    public function validate($value, $line, $field)
+    public function validate($value, $line, $field) : ?string
     {
         $count = DB::table($this->table)
             ->select('id')

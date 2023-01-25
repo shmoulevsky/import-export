@@ -2,9 +2,11 @@
 
 namespace App\Modules\User\Services\Validation\Rules;
 
-class EmailRule
+use App\Modules\User\Services\Validation\Rules\Interfaces\RuleInterface;
+
+class EmailRule implements RuleInterface
 {
-    public function validate($value, $line, $field)
+    public function validate($value, $line, $field) : ?string
     {
         return null;
     }

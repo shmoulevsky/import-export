@@ -2,9 +2,11 @@
 
 namespace App\Modules\User\Services\Validation\Rules;
 
-class PasswordRule
+use App\Modules\User\Services\Validation\Rules\Interfaces\RuleInterface;
+
+class PasswordRule implements RuleInterface
 {
-    public function validate($value, $line, $field)
+    public function validate($value, $line, $field) : ?string
     {
         return null;
     }

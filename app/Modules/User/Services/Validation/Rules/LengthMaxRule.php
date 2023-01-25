@@ -2,7 +2,9 @@
 
 namespace App\Modules\User\Services\Validation\Rules;
 
-class LengthMaxRule
+use App\Modules\User\Services\Validation\Rules\Interfaces\RuleInterface;
+
+class LengthMaxRule implements RuleInterface
 {
     private string $length;
 
@@ -13,7 +15,7 @@ class LengthMaxRule
 
     }
 
-    public function validate($value, $line, $field)
+    public function validate($value, $line, $field) : ?string
     {
         if(strlen($value) > $this->length) return "The field {$field} ({$value}) has value over max {$this->length}. Line: {$line}";
         return null;
