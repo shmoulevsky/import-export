@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ImportLaravelExcelService implements ImportInterface
 {
-    public function import($filename, $fields, $model)
+    public function import($filename, $fields, $model, $resultId)
     {
         try {
             Excel::queueImport(new UserImport(), $filename, 'public', \Maatwebsite\Excel\Excel::CSV);

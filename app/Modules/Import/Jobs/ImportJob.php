@@ -17,18 +17,20 @@ class ImportJob implements ShouldQueue
     private $path;
     private $modelName;
     private $fields;
+    private $resultId;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($service, $path, $fields, $modelName)
+    public function __construct($service, $path, $fields, $modelName, $resultId)
     {
         $this->service = $service;
         $this->path = $path;
         $this->modelName = $modelName;
         $this->fields = $fields;
+        $this->resultId = $resultId;
     }
 
     /**
@@ -39,6 +41,6 @@ class ImportJob implements ShouldQueue
     public function handle()
     {
         $model = app()->make($this->modelName);
-        $this->service->import($this->path, $this->fields, $model);
+        $this->service->import($this->path, $this->fields, $model, $this->resultId);
     }
 }

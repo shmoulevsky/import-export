@@ -15,16 +15,16 @@ class ImportService
         $this->factory = $factory;
     }
 
-    public function handle(string $type,string $filename, array $fields, $modelName)
+    public function handle(string $type,string $filename, array $fields, string $modelName, int $resultId)
     {
         $service = $this->factory->make($type);
 
         if($type === ImportType::LARAVEL_EXCEL){
-            $service->import($filename, $fields, $modelName);
+            $service->import($filename, $fields, $modelName, $resultId);
             return 1;
         }
 
-        dispatch(new ImportJob($service, $filename, $fields, $modelName));
+        dispatch(new ImportJob($service, $filename, $fields, $modelName, $resultId));
         return 1;
 
     }

@@ -3,21 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Import\ImportService;
+use App\Modules\Result\Services\ResultService;
 use App\Modules\User\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class ImportController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct(ImportService $service)
+    private ResultService $resultService;
+
+    public function __construct(
+        ImportService $service,
+        ResultService $resultService
+    )
     {
         $this->service = $service;
+        $this->resultService = $resultService;
     }
 
     public function import(Request $request)
@@ -40,7 +48,8 @@ class ImportController extends BaseController
             'password' => ['required','password']
         ];
 
-        $this->service->handle($request->type, $path, $fields, $model);
+        $result = $this->resultService->add($request->type, $request->route());
+        $this->service->handle($request->type, $path, $fields, $model, $result->id);
     }
 
 }

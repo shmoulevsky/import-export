@@ -17,19 +17,21 @@ class ExportJob implements ShouldQueue
     private $path;
     private $fields;
     private $modelName;
+    private $resultId;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($service, $path, $fields, $modelName)
+    public function __construct($service, $path, $fields, $modelName, $resultId)
     {
 
         $this->service = $service;
         $this->path = $path;
         $this->fields = $fields;
         $this->modelName = $modelName;
+        $this->resultId = $resultId;
     }
 
     /**
@@ -40,6 +42,6 @@ class ExportJob implements ShouldQueue
     public function handle()
     {
         $model = app()->make($this->modelName);
-        $result = $this->service->export($this->path, $this->fields, $model);
+        $result = $this->service->export($this->path, $this->fields, $model, $this->resultId);
     }
 }

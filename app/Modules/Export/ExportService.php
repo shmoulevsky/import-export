@@ -15,16 +15,16 @@ class ExportService
         $this->factory = $factory;
     }
 
-    public function handle(string $type,string $filename, array $fields, $model)
+    public function handle(string $type,string $filename, array $fields, $model, $resultId)
     {
         $service = $this->factory->make($type);
 
         if($type === ExportType::LARAVEL_EXCEL){
-            $service->export($filename, $fields, $model);
+            $service->export($filename, $fields, $model, $resultId);
             return 1;
         }
 
-        dispatch(new ExportJob($service, $filename, $fields, $model));
+        dispatch(new ExportJob($service, $filename, $fields, $model, $resultId));
         return 1;
     }
 }
