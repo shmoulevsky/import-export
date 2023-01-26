@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Modules\Import\Entities\ImportType;
+use App\Modules\Import\Factory\ImportServiceFactory;
 use App\Modules\User\Models\User;
-use App\Modules\User\Services\Import\Entities\ImportType;
-use App\Modules\User\Services\Import\Factory\ImportServiceFactory;
 use Tests\TestCase;
 
 class ImportTest extends TestCase

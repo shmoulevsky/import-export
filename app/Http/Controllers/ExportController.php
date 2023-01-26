@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Modules\Export\ExportService;
 use App\Modules\User\Models\User;
-use App\Modules\User\Services\Export\ExportService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
