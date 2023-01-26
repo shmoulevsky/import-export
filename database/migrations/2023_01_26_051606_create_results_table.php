@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('start', 5);
-            $table->dateTime('end', 5)->nullable();
+            $table->timestamp('start', 6);
+            $table->timestamp('end', 6)->nullable();
             $table->string('type');
             $table->string('route');
             $table->smallInteger('status')->default(0);

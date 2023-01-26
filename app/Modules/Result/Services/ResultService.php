@@ -16,7 +16,7 @@ class ResultService
 
         DB::transaction(function () use ($type, $route, $result){
 
-            $result->start = Carbon::now();
+            $result->start = Carbon::now()->format('Y-m-d H:i:s.u');
             $result->type = $type;
             $result->route = $route;
             $result->status = ResultStatus::PENDING;
@@ -41,7 +41,7 @@ class ResultService
 
         DB::transaction(function () use ($result, $totalCount, $successCount, $errorCount, $errors){
 
-            $result->end = Carbon::now();
+            $result->end = Carbon::now()->format('Y-m-d H:i:s.u');
             $result->status = ResultStatus::SUCCESS;
 
             if($errorCount > 0){
