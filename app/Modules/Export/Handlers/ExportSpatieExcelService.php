@@ -9,7 +9,7 @@ class ExportSpatieExcelService implements ExportInterface
 {
     const SIZE = 200;
 
-    public function export(string $filename, array $fields, $model)
+    public function export(string $filename, array $fields, $model, $resultId)
     {
 
         $model::select($fields)->chunk(self::SIZE, function($items) use ($filename){

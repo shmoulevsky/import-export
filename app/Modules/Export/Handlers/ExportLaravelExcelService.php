@@ -7,7 +7,7 @@ use App\Modules\Export\Interfaces\ExportInterface;
 
 class ExportLaravelExcelService implements ExportInterface
 {
-    public function export($filename, array $fields, $model)
+    public function export($filename, array $fields, $model, $resultId)
     {
         fopen($filename, 'w');
         (new UserExport($fields))->queue($filename);

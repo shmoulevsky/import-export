@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Export\ExportService;
+use App\Modules\Result\Entities\ResultStatus;
 use App\Modules\Result\Services\ResultService;
 use App\Modules\User\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -41,8 +42,10 @@ class ExportController extends BaseController
         $model = User::class;
         $fields = ['user_name', 'first_name', 'last_name', 'patronymic', 'email', 'password'];
 
-        $result = $this->resultService->add($request->type, $request->route());
+        $result = $this->resultService->add($request->type, url()->current());
         $this->service->handle($request->type, $path, $fields, $model, $result->id);
+
+        return response()->json(['status' => 'ok']);
     }
 
 }

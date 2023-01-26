@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('end', 6)->nullable();
             $table->string('type');
             $table->string('route');
-            $table->smallInteger('status')->default(0);
+            $table->smallInteger('status')->index()->default(0);
         });
     }
 

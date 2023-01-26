@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Import\ImportService;
+use App\Modules\Result\Entities\ResultStatus;
 use App\Modules\Result\Services\ResultService;
 use App\Modules\User\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -48,8 +49,9 @@ class ImportController extends BaseController
             'password' => ['required','password']
         ];
 
-        $result = $this->resultService->add($request->type, $request->route());
+        $result = $this->resultService->add($request->type, url()->current());
         $this->service->handle($request->type, $path, $fields, $model, $result->id);
+        return response()->json(['status' => 'ok']);
     }
 
 }

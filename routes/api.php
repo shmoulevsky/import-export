@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('import', [ImportController::class, 'import']);
 Route::post('export', [ExportController::class, 'export']);
-Route::post('result', [ResultController::class, 'index']);
+Route::get('results', [ResultController::class, 'index']);
