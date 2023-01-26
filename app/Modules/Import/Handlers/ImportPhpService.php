@@ -38,9 +38,6 @@ class ImportPhpService implements ImportInterface
             $model::insert($output);
         }
 
-        $resultService = new ResultService();
-        $resultService->finish($resultId, $line, count($output), count($errors), $errors);
-
         fclose($file);
     }
 }

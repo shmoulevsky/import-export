@@ -13,11 +13,12 @@ class ExportJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $service;
-    private $type;
+    public $type;
     private $path;
     private $fields;
     private $modelName;
-    private $resultId;
+    public $resultId;
+    public $resultInfo;
 
     /**
      * Create a new job instance.
@@ -42,6 +43,6 @@ class ExportJob implements ShouldQueue
     public function handle()
     {
         $model = app()->make($this->modelName);
-        $result = $this->service->export($this->path, $this->fields, $model, $this->resultId);
+        $resultInfo = $this->service->export($this->path, $this->fields, $model, $this->resultId);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Modules\Import\Handlers\LaravelExcel;
 
 
 use App\Modules\Import\Entities\ValidationRules;
+use App\Modules\Result\Services\ResultService;
 use App\Modules\User\Models\User;
 use App\Modules\User\Services\Import\Handlers\LaravelExcel\ImportResultDTO;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -22,9 +23,11 @@ class UserImport implements ToModel, WithValidation, SkipsOnFailure, ShouldQueue
 
     const COUNT = 100;
     private ImportResultDTO $result;
+    public $resultId;
 
-    public function __construct()
+    public function __construct($resultId)
     {
+        $this->resultId = $resultId;
     }
 
     public function model(array $row)

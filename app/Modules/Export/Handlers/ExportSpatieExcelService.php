@@ -3,6 +3,7 @@
 namespace App\Modules\Export\Handlers;
 
 use App\Modules\Export\Interfaces\ExportInterface;
+use App\Modules\Result\Services\ResultService;
 use Spatie\SimpleExcel\SimpleExcelWriter;
 
 class ExportSpatieExcelService implements ExportInterface

@@ -3,6 +3,7 @@
 namespace App\Modules\Export\Handlers;
 
 use App\Modules\Export\Interfaces\ExportInterface;
+use App\Modules\Result\Services\ResultService;
 
 class ExportPhpService implements ExportInterface
 {
@@ -11,9 +12,15 @@ class ExportPhpService implements ExportInterface
     {
         $file = fopen($filename, 'w');
         $model::select($fields)->chunk(self::SIZE, function($items) use ($file){
+
+            $items = [];
+
             foreach ($items as $item) {
-                fputcsv($file, $item->toArray());
+                $items[] = $item->toArray();
             }
+
+            fputcsv($file, $items);
         });
+
     }
 }

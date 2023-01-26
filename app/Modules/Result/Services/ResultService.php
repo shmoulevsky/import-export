@@ -35,7 +35,7 @@ class ResultService
 
     }
 
-    public function finish($resultId, $totalCount, $successCount, $errorCount, $errors)
+    public function finishImport($resultId, $totalCount, $successCount, $errorCount, $errors)
     {
         $result = Result::find($resultId);
 
@@ -61,6 +61,14 @@ class ResultService
 
         return $result;
 
+    }
+
+    public function finish($resultId)
+    {
+        $result = Result::find($resultId);
+        $result->end = Carbon::now()->format('Y-m-d H:i:s.u');
+        $result->status = ResultStatus::SUCCESS;
+        $result->save();
     }
 
 }

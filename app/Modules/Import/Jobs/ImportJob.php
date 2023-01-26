@@ -17,7 +17,7 @@ class ImportJob implements ShouldQueue
     private $path;
     private $modelName;
     private $fields;
-    private $resultId;
+    public $resultId;
 
     /**
      * Create a new job instance.

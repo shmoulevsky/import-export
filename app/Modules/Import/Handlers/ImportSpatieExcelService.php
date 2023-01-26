@@ -35,14 +35,10 @@ class ImportSpatieExcelService implements ImportInterface
 
             });
 
-        Log::info(print_r($errors, true));
+        Log::error(print_r($errors, true));
 
         if(count($output) > 0){
             $model::insert($output);
         }
-
-        $resultService = new ResultService();
-        $resultService->finish($resultId, $line, count($output), count($errors), $errors);
-
     }
 }

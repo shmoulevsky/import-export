@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Modules\Result\Services\ResultService;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Queue;
@@ -32,7 +33,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Queue::after(function (JobProcessed $event) {
-            Log::info(print_r($event->job->payload()));
+
+            $data = unserialize($event->job->payload()['data']['command']);
+            $resultService = new ResultService();
+
+            if($data?->resultId){
+                $resultService->finish($data->resultId);
+            }
         });
 
     }
