@@ -25,6 +25,9 @@
                 <template v-else-if="header.type === 'url'">
                     <a :href="item[header.url]">{{item[header.code]}}</a>
                 </template>
+                <template v-else-if="header.type === 'badge'">
+                    <span class="badge" :class="item[header.code].class">{{item[header.code].title}}</span>
+                </template>
                 <template v-else>
                     {{item[header.code]}}
                 </template>

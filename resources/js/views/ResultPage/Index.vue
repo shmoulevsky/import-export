@@ -94,6 +94,7 @@ export default {
                     title: "Статус",
                     code: "status",
                     dir: "asc",
+                    type: "badge",
                     is_sort: true,
                 },
                 {

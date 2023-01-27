@@ -16,7 +16,7 @@ class ResultResource extends JsonResource
             'duration' => $this->duration,
             'type' => $this->type,
             'route' => $this->route,
-            'status' => $this->status,
+            'status' => $this->status === 1 ? ['title' => 'Успешно', 'class' => 'bg-success'] : ['title' => 'Ошибка', 'class' => 'bg-danger'],
             'total_count' => $this->total_count,
             'success_count' => $this->success_count,
             'error_count' => $this->error_count,
