@@ -13,13 +13,10 @@ class ExportPhpService implements ExportInterface
         $file = fopen($filename, 'w');
         $model::select($fields)->chunk(self::SIZE, function($items) use ($file){
 
-            $items = [];
-
             foreach ($items as $item) {
-                $items[] = $item->toArray();
+                fputcsv($file, $item->toArray());
             }
 
-            fputcsv($file, $items);
         });
 
     }

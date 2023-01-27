@@ -34,7 +34,7 @@ class ExportController extends BaseController
 
     public function export(Request $request)
     {
-        $path = storage_path()."/export-{$request->type}.csv";
+        $path = storage_path("app/public")."/export-{$request->type}.csv";
 
         if(Storage::exists($path)){
             Storage::delete($path);

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Result\Jobs;
 
+use App\Modules\Result\Services\ResultNotifyService;
 use App\Modules\Result\Services\ResultService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -23,8 +24,10 @@ class ResultFinishJob
     public function handle()
     {
         $resultService = new ResultService();
-        $resultService->finish($this->resultId);
+        $result = $resultService->finish($this->resultId);
 
+        $resultNotifyService = new ResultNotifyService();
+        $resultNotifyService->handle($result);
     }
 
 
