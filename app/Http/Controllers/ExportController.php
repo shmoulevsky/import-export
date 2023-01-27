@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Modules\Export\Entities\ExportType;
 use App\Modules\Export\ExportService;
+use App\Modules\Export\Requests\ExportRequest;
 use App\Modules\Result\Entities\ResultStatus;
 use App\Modules\Result\Services\ResultService;
 use App\Modules\User\Models\User;
@@ -32,7 +33,7 @@ class ExportController extends BaseController
         $this->resultService = $resultService;
     }
 
-    public function export(Request $request)
+    public function export(ExportRequest $request)
     {
         $path = storage_path("app/public")."/export-{$request->type}.csv";
 

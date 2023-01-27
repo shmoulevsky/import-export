@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\UserController;
@@ -22,3 +23,4 @@ Route::post('export', [ExportController::class, 'export']);
 Route::get('export/types', [ExportController::class, 'getTypes']);
 Route::get('results', [ResultController::class, 'index']);
 Route::get('users', [UserController::class, 'index']);
+Route::post('upload-file', [FileController::class, 'upload']);

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Import\ImportService;
-use App\Modules\Result\Entities\ResultStatus;
+use App\Modules\Import\Requests\ImportRequest;
 use App\Modules\Result\Services\ResultService;
 use App\Modules\User\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -11,8 +11,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Storage;
 
 class ImportController extends BaseController
 {
@@ -29,16 +27,15 @@ class ImportController extends BaseController
         $this->resultService = $resultService;
     }
 
-    public function import(Request $request)
+    public function import(ImportRequest $request)
     {
-        $file = $request->file;
+        $path = $request->path;
 
-        if(!Storage::disk('public')->exists($file)){
-           return response(['error' => "file not found: {$file}"], 422);
-        }
+        /*if(!Storage::exists(basename($path))){
+           return response(['error' => "file not found: {$path}"], 422);
+        }*/
 
         $model = User::class;
-        $path = storage_path('app/public/').$file;
 
         $fields = [
             'user_name' => ['required','max:100','unique:users,user_name'],
