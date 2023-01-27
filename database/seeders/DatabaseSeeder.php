@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     {
 
         $users = [];
-        $maxCount = 100;
+        $maxCount = 1000;
 
         $faker = Factory::create('en_US');
         $passwordRandomService = new PasswordRandomService();

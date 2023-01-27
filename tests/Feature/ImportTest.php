@@ -22,7 +22,7 @@ class ImportTest extends TestCase
         $resultService = new ResultService();
         $result = $resultService->add(ImportType::PHP, 'test/api/import');
 
-        $file = 'export-php.csv';
+        $file = 'test.csv';
         $type = ImportType::PHP;
         $modelName = User::class;
         $path = storage_path('app/public/').$file;
@@ -44,17 +44,12 @@ class ImportTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function test_import_laravel_excel()
-    {
-
-    }
-
     public function test_import_laravel_spatie()
     {
         $resultService = new ResultService();
         $result = $resultService->add(ImportType::SPATIE_EXCEL, 'test/api/import');
 
-        $file = 'export-php.csv';
+        $file = 'test.csv';
         $type = ImportType::SPATIE_EXCEL;
         $modelName = User::class;
         $path = storage_path('app/public/').$file;

@@ -13,7 +13,9 @@ class ExportSpatieExcelService implements ExportInterface
     public function export(string $filename, array $fields, $model, $resultId)
     {
 
-        $model::select($fields)->chunk(self::SIZE, function($items) use ($filename){
+        $file = SimpleExcelWriter::create($filename);
+
+        $model::select($fields)->chunk(self::SIZE, function($items) use ($file){
 
             $rows = [];
 
@@ -21,7 +23,7 @@ class ExportSpatieExcelService implements ExportInterface
                 $rows[] = $item->toArray();
             }
 
-            SimpleExcelWriter::create($filename)->addRows($rows);
+            $file->addRows($rows);
 
         });
 

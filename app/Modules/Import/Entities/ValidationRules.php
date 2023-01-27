@@ -15,7 +15,7 @@ class ValidationRules
 
     public static function getPassword()
     {
-        return ['required','max:255', Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised()];
+        return ['required','max:255', Password::min(8)->mixedCase()->numbers()->symbols()];
     }
 
 }

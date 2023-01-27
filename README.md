@@ -17,16 +17,21 @@
 Запуск:
 - Для запуска выполнить make up (в корне лежит Makefile с прописаными командами). В случае если docker-compose версии ниже 2 то раскоментировать Makefile_bk и повторно запустить make up
 - Для запуска терминала контейнера php make bash
+- Создать env (из env.example)
+- Выполнить php composer.phar install, php artisan migrate, npm install 
+- Запустить сидеры php artisan db:seed, создать link - php artisan storage:link   
 - Проект запускается на http://127.100.100.160
 - Для доступа к MailHog http://127.100.100.160:8025
 - Для доступа к phpMyAdmin http://127.100.100.160:8081 (db_import_export/app/root)
 - Запуск сидера: php artisan db:seed (заполняет таблицу users)
+- Также приложены эндпоинты для insomnia
 
 Скриншеты:
 
 ![Screenshot1](storage/shots/1.png)
 ![Screenshot2](storage/shots/2.png)
 ![Screenshot3](storage/shots/3.png)
-![Screenshot3](storage/shots/4.png)
+![Screenshot4](storage/shots/4.png)
+![Screenshot5](storage/shots/5.png)
 
 

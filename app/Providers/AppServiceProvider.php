@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
 
             $data = unserialize($event->job->payload()['data']['command']);
 
-            if($data?->resultId){
+            if(property_exists($data, 'resultId')){
                 $resultService = new ResultService();
                 $resultNotifyService = new ResultNotifyService();
                 $result = $resultService->finish($data->resultId);
