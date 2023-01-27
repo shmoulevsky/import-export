@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Modules\Result\Repositories\ResultRepository;
 use App\Modules\Result\Resources\ResultCollection;
+use App\Modules\Utils\DTO\ParamListDTO;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Request;
+
 
 class ResultController extends BaseController
 {
@@ -23,7 +26,13 @@ class ResultController extends BaseController
 
     public function index(Request $request)
     {
-        $results = $this->repository->all();
+        $params = ParamListDTO::fromRequest($request);
+
+        $results = $this->repository->all(
+            $params->getSort(),
+            $params->getDir(),
+            $params->getCount()
+        );
         return new ResultCollection($results);
     }
 

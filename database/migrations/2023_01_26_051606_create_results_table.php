@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamp('start', 6);
             $table->timestamp('end', 6)->nullable();
+            $table->bigInteger('duration')->unsigned()->nullable();
             $table->string('type');
             $table->string('route');
             $table->smallInteger('status')->index()->default(0);

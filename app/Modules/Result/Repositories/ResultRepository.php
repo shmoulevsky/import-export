@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class ResultRepository
 {
-    public function all($sort = 'id', $dir = 'desc')
+    public function all($sort = 'id', $dir = 'desc', $count = 10)
     {
         return DB::table('results')
             ->select(
@@ -17,6 +17,6 @@ class ResultRepository
             )
             ->join('result_logs', 'results.id','=','result_logs.result_id')
             ->orderBy($sort, $dir)
-            ->get();
+            ->paginate($count);
     }
 }

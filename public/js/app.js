@@ -18008,12 +18008,12 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "sidebar-title"
 }, "Меню", -1 /* HOISTED */);
 var _hoisted_7 = {
-  "class": "sidebar-item active"
+  "class": "sidebar-item"
 };
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "bi bi-grid-fill"
 }, null, -1 /* HOISTED */);
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Dashboard", -1 /* HOISTED */);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Список пользователей", -1 /* HOISTED */);
 var _hoisted_10 = {
   "class": "sidebar-item"
 };
@@ -18028,6 +18028,13 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "bi bi-tag-fill"
 }, null, -1 /* HOISTED */);
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Экспорт", -1 /* HOISTED */);
+var _hoisted_16 = {
+  "class": "sidebar-item"
+};
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "bi bi-speedometer"
+}, null, -1 /* HOISTED */);
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Результаты", -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -18055,6 +18062,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_14, _hoisted_15];
+    }),
+    _: 1 /* STABLE */
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/result",
+    "class": "sidebar-link"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_17, _hoisted_18];
     }),
     _: 1 /* STABLE */
   })])])])])]);
@@ -18149,7 +18164,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../views/AdminPage.vue */ "./resources/js/views/AdminPage.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  path: 'dashboard',
+  path: '/',
   name: 'dashboard',
   component: _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
   props: true,
@@ -18225,6 +18240,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/router/Child/Result.js":
+/*!*********************************************!*\
+  !*** ./resources/js/router/Child/Result.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../views/AdminPage.vue */ "./resources/js/views/AdminPage.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  path: 'result',
+  name: 'result',
+  component: _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  props: true,
+  children: [{
+    name: 'result.index',
+    path: '',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_ResultPage_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/ResultPage/Index.vue */ "./resources/js/views/ResultPage/Index.vue"));
+    }
+  }]
+});
+
+/***/ }),
+
 /***/ "./resources/js/router/index.js":
 /*!**************************************!*\
   !*** ./resources/js/router/index.js ***!
@@ -18263,6 +18308,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Child_Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Child/Dashboard */ "./resources/js/router/Child/Dashboard.js");
 /* harmony import */ var _Child_ImportItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Child/ImportItem */ "./resources/js/router/Child/ImportItem.js");
 /* harmony import */ var _Child_ExportItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Child/ExportItem */ "./resources/js/router/Child/ExportItem.js");
+/* harmony import */ var _Child_Result__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Child/Result */ "./resources/js/router/Child/Result.js");
+
 
 
 
@@ -18270,7 +18317,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   path: '/',
   component: _views_Admin_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-  children: [_Child_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"], _Child_ImportItem__WEBPACK_IMPORTED_MODULE_2__["default"], _Child_ExportItem__WEBPACK_IMPORTED_MODULE_3__["default"]]
+  children: [_Child_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"], _Child_ImportItem__WEBPACK_IMPORTED_MODULE_2__["default"], _Child_ExportItem__WEBPACK_IMPORTED_MODULE_3__["default"], _Child_Result__WEBPACK_IMPORTED_MODULE_4__["default"]]
 }]);
 
 /***/ }),
@@ -18298,7 +18345,7 @@ var token = (_localStorage$getItem = localStorage.getItem('token')) !== null && 
 var language = _store__WEBPACK_IMPORTED_MODULE_1__["default"].getters.getLanguage;
 console.log(language);
 var axiosInstance = axios__WEBPACK_IMPORTED_MODULE_2__["default"].create({
-  baseURL: process.env.API_URL || 'http://games.ru/api',
+  baseURL: process.env.API_URL || '/api',
   headers: {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -48032,7 +48079,7 @@ const toJSONObject = (obj) => {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_Dashboard_Index_vue":1,"resources_js_views_ImportPage_Index_vue":1,"resources_js_views_ExportPage_Index_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_Dashboard_Index_vue":1,"resources_js_views_ImportPage_Index_vue":1,"resources_js_views_ExportPage_Index_vue":1,"resources_js_views_ResultPage_Index_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

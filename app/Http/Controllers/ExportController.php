@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Modules\Export\Entities\ExportType;
 use App\Modules\Export\ExportService;
 use App\Modules\Result\Entities\ResultStatus;
 use App\Modules\Result\Services\ResultService;
@@ -42,10 +43,16 @@ class ExportController extends BaseController
         $model = User::class;
         $fields = ['user_name', 'first_name', 'last_name', 'patronymic', 'email', 'password'];
 
-        $result = $this->resultService->add($request->type, url()->current());
+        $result = $this->resultService->add($request->type, request()->path());
         $this->service->handle($request->type, $path, $fields, $model, $result->id);
 
         return response()->json(['status' => 'ok']);
+    }
+
+    public function getTypes(Request $request)
+    {
+        $types = ExportType::getAll();
+        return response()->json(['types' => $types]);
     }
 
 }

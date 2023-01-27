@@ -24,10 +24,10 @@
                     <li class="sidebar-title">Меню</li>
 
                     <li
-                        class="sidebar-item active ">
+                        class="sidebar-item">
                         <router-link :to="{ name: 'dashboard.index'}" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
-                            <span>Dashboard</span>
+                            <span>Список пользователей</span>
                         </router-link>
                     </li>
                     <li
@@ -42,6 +42,13 @@
                         <router-link to="/export" class='sidebar-link'>
                             <i class="bi bi-tag-fill"></i>
                             <span>Экспорт</span>
+                        </router-link>
+                    </li>
+                    <li
+                        class="sidebar-item">
+                        <router-link to="/result" class='sidebar-link'>
+                            <i class="bi bi-speedometer"></i>
+                            <span>Результаты</span>
                         </router-link>
                     </li>
 

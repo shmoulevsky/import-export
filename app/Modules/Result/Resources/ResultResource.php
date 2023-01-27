@@ -13,7 +13,7 @@ class ResultResource extends JsonResource
             'id' => $this->id,
             'start' => $this->start,
             'end' => $this->end,
-            'duration' => Carbon::createFromFormat('Y-m-d H:i:s.u', $this->end)->diffInMilliseconds(Carbon::createFromFormat('Y-m-d H:i:s.u', $this->start)),
+            'duration' => $this->duration,
             'type' => $this->type,
             'route' => $this->route,
             'status' => $this->status,

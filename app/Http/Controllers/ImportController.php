@@ -49,7 +49,7 @@ class ImportController extends BaseController
             'password' => ['required','password']
         ];
 
-        $result = $this->resultService->add($request->type, url()->current());
+        $result = $this->resultService->add($request->type, request()->path());
         $this->service->handle($request->type, $path, $fields, $model, $result->id);
         return response()->json(['status' => 'ok']);
     }

@@ -68,6 +68,7 @@ class ResultService
         $result = Result::find($resultId);
         $result->end = Carbon::now()->format('Y-m-d H:i:s.u');
         $result->status = ResultStatus::SUCCESS;
+        $result->duration = Carbon::createFromFormat('Y-m-d H:i:s.u', $result->end)->diffInMilliseconds(Carbon::createFromFormat('Y-m-d H:i:s.u', $result->start));
         $result->save();
     }
 

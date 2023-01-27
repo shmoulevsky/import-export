@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ResultController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('import', [ImportController::class, 'import']);
 Route::post('export', [ExportController::class, 'export']);
+Route::get('export/types', [ExportController::class, 'getTypes']);
 Route::get('results', [ResultController::class, 'index']);
+Route::get('users', [UserController::class, 'index']);

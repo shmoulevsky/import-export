@@ -1,7 +1,7 @@
 import AdminPage from "../../views/AdminPage.vue";
 
 export default {
-    path: 'dashboard',
+    path: '/',
     name: 'dashboard',
     component: AdminPage,
     props: true,
